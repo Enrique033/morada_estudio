@@ -1,0 +1,373 @@
+/* ============================================================
+   SECTIONS · Hero, value, projects, studio, CTA, contact
+   ============================================================ */
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+  padding-top: 112px;
+  padding-bottom: clamp(4rem, 8vw, 6rem);
+}
+
+.hero__inner {
+  display: grid;
+  gap: var(--space-10);
+}
+
+.hero__content {
+  padding-inline: var(--gutter);
+  max-width: 620px;
+}
+
+.hero__title {
+  margin-bottom: var(--space-6);
+  font-size: var(--fs-display-xl);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+.hero__lead {
+  max-width: 46ch;
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--graphite);
+  margin-bottom: var(--space-8);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  margin-bottom: var(--space-10);
+}
+
+.hero__meta {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.hero__media {
+  overflow: hidden;
+  background: var(--linen);
+  aspect-ratio: 4/5;
+}
+
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Desktop: composición asimétrica 5/7 */
+@media (min-width: 1024px) {
+  .hero {
+    padding-top: 140px;
+    padding-bottom: 0;
+  }
+
+  .hero__inner {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 0;
+    align-items: center;
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+  }
+
+  .hero__content {
+    max-width: 560px;
+    /* Alinea el contenido con el grid del container, no con el borde de pantalla */
+    padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2));
+    padding-right: var(--space-10);
+  }
+
+  .hero__media {
+    aspect-ratio: 3/4;
+    max-height: 720px;
+  }
+}
+
+/* ============================================================
+   SERVICIOS
+   ============================================================ */
+
+.services__list {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.services__list .service-row:first-child {
+  border-top: 1px solid var(--hairline);
+}
+
+/* ============================================================
+   PROPUESTA DE VALOR
+   ============================================================ */
+
+.value {
+  background: var(--linen);
+}
+
+.value__grid {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.value__lead {
+  margin-top: var(--space-6);
+  max-width: 42ch;
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--graphite);
+}
+
+@media (min-width: 900px) {
+  .value__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: var(--space-20);
+    align-items: start;
+  }
+
+  /* La intro queda "pegada" mientras se leen los principios */
+  .value__intro {
+    position: sticky;
+    top: 108px;
+  }
+}
+
+/* ============================================================
+   PROCESO
+   ============================================================ */
+
+.process__timeline {
+  counter-reset: step;
+}
+
+/* ============================================================
+   PROYECTOS
+   ============================================================ */
+
+.projects__grid {
+  display: grid;
+  gap: var(--space-10) var(--space-6);
+}
+
+.projects__cta {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Grid asimétrico en desktop */
+@media (min-width: 768px) {
+  .projects__grid {
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--space-6);
+    row-gap: clamp(3rem, 6vw, 5rem);
+  }
+
+  /* Proyecto destacado */
+  .project:nth-child(1) {
+    grid-column: 1 / 8;
+  }
+
+  /* Secundarios con distintos offsets verticales para romper la simetría */
+  .project:nth-child(2) {
+    grid-column: 8 / 13;
+    margin-top: var(--space-20);
+  }
+
+  .project:nth-child(3) {
+    grid-column: 1 / 5;
+  }
+
+  .project:nth-child(4) {
+    grid-column: 5 / 9;
+    margin-top: var(--space-16);
+  }
+
+  .project:nth-child(5) {
+    grid-column: 9 / 13;
+  }
+}
+
+/* ============================================================
+   ESTUDIO
+   ============================================================ */
+
+.studio__grid {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.studio__media {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  aspect-ratio: 4/3;
+  background: var(--linen);
+}
+
+.studio__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.studio__lead {
+  margin-top: var(--space-6);
+  max-width: 44ch;
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--graphite);
+}
+
+.studio__meta {
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--hairline);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+@media (min-width: 900px) {
+  .studio__grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: var(--space-20);
+    align-items: center;
+  }
+
+  .studio__media {
+    aspect-ratio: 5/4;
+  }
+}
+
+/* ============================================================
+   TESTIMONIOS
+   ============================================================ */
+
+.testimonials {
+  background: var(--linen);
+}
+
+.testimonials .section-header {
+  max-width: 46ch;
+}
+
+.testimonials__grid {
+  display: grid;
+  gap: var(--space-10);
+}
+
+@media (min-width: 768px) {
+  .testimonials__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+  }
+}
+
+/* ============================================================
+   CTA BAND (banda oscura antes del contacto)
+   ============================================================ */
+
+.cta-band {
+  background: var(--ink);
+  color: var(--bone);
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.cta-band__inner {
+  display: grid;
+  gap: var(--space-8);
+  align-items: end;
+}
+
+.cta-band__title {
+  color: var(--bone);
+  font-size: var(--fs-display-l);
+  letter-spacing: -0.015em;
+}
+
+.cta-band__text {
+  margin-top: var(--space-4);
+  max-width: 40ch;
+  font-size: var(--fs-lead);
+  color: rgba(247, 244, 239, 0.75);
+}
+
+.cta-band .btn--inverse {
+  justify-self: start;
+}
+
+@media (min-width: 768px) {
+  .cta-band__inner {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: var(--space-16);
+  }
+
+  .cta-band .btn--inverse {
+    justify-self: end;
+  }
+}
+
+/* ============================================================
+   CONTACTO
+   ============================================================ */
+
+.contact__grid {
+  display: grid;
+  gap: var(--space-16);
+}
+
+.contact__lead {
+  margin-top: var(--space-4);
+  max-width: 46ch;
+  font-size: var(--fs-lead);
+  color: var(--graphite);
+}
+
+.contact__info {
+  display: grid;
+  gap: var(--space-8);
+  align-self: start;
+}
+
+.contact__label {
+  margin-bottom: var(--space-2);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.contact__info p {
+  color: var(--ink);
+}
+
+.contact__info a {
+  border-bottom: 1px solid transparent;
+}
+
+.contact__info a:hover {
+  border-bottom-color: var(--stone);
+}
+
+@media (min-width: 900px) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: var(--space-20);
+  }
+
+  .contact__info {
+    padding-top: var(--space-4);
+    padding-left: var(--space-12);
+    border-left: 1px solid var(--hairline);
+  }
+}

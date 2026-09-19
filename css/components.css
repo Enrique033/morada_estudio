@@ -1,0 +1,755 @@
+/* ============================================================
+   COMPONENTS · Botones, header, cards, formulario, footer
+   ============================================================ */
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.9rem 1.4rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 44px;
+  transition: background-color var(--dur-base) var(--ease),
+              color var(--dur-base) var(--ease),
+              border-color var(--dur-base) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+
+.btn svg {
+  transition: transform var(--dur-base) var(--ease);
+}
+
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--bone);
+  border: 1px solid var(--ink);
+}
+
+.btn--primary:hover {
+  background: var(--clay);
+  border-color: var(--clay);
+}
+
+.btn--inverse {
+  background: var(--bone);
+  color: var(--ink);
+  border: 1px solid var(--bone);
+}
+
+.btn--inverse:hover {
+  background: transparent;
+  color: var(--bone);
+}
+
+/* -------- Enlace con flecha -------- */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-bottom: 4px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: 1px solid var(--stone);
+  transition: border-color var(--dur-base) var(--ease),
+              color var(--dur-base) var(--ease);
+}
+
+.link-arrow svg {
+  transition: transform var(--dur-base) var(--ease);
+}
+
+.link-arrow:hover {
+  border-color: var(--ink);
+}
+
+.link-arrow:hover svg {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-header);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--dur-base) var(--ease),
+              backdrop-filter var(--dur-base) var(--ease),
+              border-color var(--dur-base) var(--ease);
+}
+
+.header.is-scrolled {
+  background: rgba(247, 244, 239, 0.92);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom-color: var(--hairline-2);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  height: 72px;
+}
+
+/* -------- Logo -------- */
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.logo__mark {
+  color: var(--ink);
+}
+
+.logo__sub {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+/* -------- Navegación de escritorio -------- */
+.nav {
+  display: none;
+}
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: 0.9375rem;
+}
+
+.nav__list a {
+  position: relative;
+  color: var(--graphite);
+  padding-block: 6px;
+}
+
+.nav__list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease);
+}
+
+.nav__list a:hover {
+  color: var(--ink);
+}
+
+.nav__list a:hover::after {
+  transform: scaleX(1);
+}
+
+.header__cta {
+  display: none;
+}
+
+/* En desktop, mostramos nav y CTA, ocultamos hamburguesa */
+@media (min-width: 900px) {
+  .nav {
+    display: block;
+  }
+
+  .header__cta {
+    display: inline-flex;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* ============================================================
+   MENÚ MÓVIL
+   ============================================================ */
+
+.menu-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+}
+
+.menu-toggle__bar {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+  transition: transform var(--dur-base) var(--ease),
+              opacity var(--dur-base) var(--ease);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(1) {
+  transform: translateY(3.75px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(2) {
+  transform: translateY(-3.75px) rotate(-45deg);
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-20) var(--gutter) var(--space-12);
+  background: var(--bone);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-base) var(--ease),
+              visibility var(--dur-base) var(--ease);
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-12);
+}
+
+.mobile-menu__list a {
+  display: block;
+  padding-block: var(--space-3);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8vw, 2.75rem);
+  font-weight: 400;
+  color: var(--ink);
+  border-bottom: 1px solid var(--hairline-2);
+}
+
+.mobile-menu__cta {
+  align-self: flex-start;
+}
+
+/* ============================================================
+   FILA DE SERVICIO
+   ============================================================ */
+
+.service-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4) var(--space-6);
+  padding-block: var(--space-8);
+  border-top: 1px solid var(--hairline);
+  position: relative;
+}
+
+.service-row:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.service-row__num {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--stone);
+  padding-top: 4px;
+  font-variation-settings: "opsz" 20;
+}
+
+.service-row__title {
+  margin-bottom: var(--space-2);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.2vw, 1.875rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.service-row__text {
+  color: var(--graphite);
+  max-width: 46ch;
+}
+
+.service-row__thumb {
+  grid-column: 1 / -1;
+  margin-top: var(--space-2);
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  aspect-ratio: 4/3;
+}
+
+.service-row__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* En desktop, la miniatura aparece al hover */
+@media (min-width: 900px) {
+  .service-row {
+    grid-template-columns: 60px minmax(0, 1fr) 220px;
+    align-items: center;
+    gap: var(--space-8);
+    padding-block: var(--space-10);
+  }
+
+  .service-row__thumb {
+    grid-column: 3;
+    margin-top: 0;
+    aspect-ratio: 5/4;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity var(--dur-base) var(--ease),
+                transform var(--dur-base) var(--ease);
+    pointer-events: none;
+  }
+
+  .service-row:hover .service-row__thumb,
+  .service-row:focus-within .service-row__thumb {
+    opacity: 1;
+    transform: none;
+  }
+
+  .service-row__title {
+    font-size: clamp(1.75rem, 2.6vw, 2.125rem);
+  }
+}
+
+/* ============================================================
+   PRINCIPIOS (propuesta de valor)
+   ============================================================ */
+
+.principle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4) var(--space-6);
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--hairline);
+}
+
+.principle:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.principle__num {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--stone);
+  padding-top: 3px;
+}
+
+.principle__title {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin-bottom: var(--space-1);
+  color: var(--ink);
+}
+
+.principle__text {
+  color: var(--graphite);
+}
+
+/* ============================================================
+   PROCESO
+   ============================================================ */
+
+.process__timeline {
+  display: grid;
+  gap: var(--space-8);
+  position: relative;
+}
+
+.process-step {
+  position: relative;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--hairline);
+}
+
+.process-step__num {
+  display: block;
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  color: var(--stone);
+}
+
+.process-step__title {
+  margin-bottom: var(--space-2);
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.process-step__text {
+  color: var(--graphite);
+  max-width: 34ch;
+}
+
+@media (min-width: 768px) {
+  .process__timeline {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* ============================================================
+   TARJETA DE PROYECTO
+   ============================================================ */
+
+.project {
+  display: block;
+  color: inherit;
+}
+
+.project__media {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: var(--linen);
+  aspect-ratio: 4/5;
+}
+
+.project__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease);
+}
+
+.project:hover .project__media img,
+.project:focus-visible .project__media img {
+  transform: scale(1.03);
+}
+
+.project__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: var(--space-4);
+}
+
+.project__name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.project__detail {
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.project--lg .project__media {
+  aspect-ratio: 4/5;
+}
+
+@media (min-width: 768px) {
+  .project--lg .project__media {
+    aspect-ratio: 3/4;
+  }
+
+  .project--lg .project__name {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================================
+   TESTIMONIO
+   ============================================================ */
+
+.testimonial {
+  margin: 0;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--hairline);
+}
+
+.testimonial blockquote {
+  margin: 0 0 var(--space-6);
+}
+
+.testimonial blockquote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.1vw, 1.625rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 40;
+  text-wrap: balance;
+}
+
+.testimonial figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.testimonial__name {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--ink);
+}
+
+.testimonial__context {
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+/* ============================================================
+   FORMULARIO
+   ============================================================ */
+
+.form {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form__field label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.form__field input,
+.form__field select,
+.form__field textarea {
+  width: 100%;
+  padding: 0.85rem 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0;
+  color: var(--ink);
+  transition: border-color var(--dur-base) var(--ease);
+}
+
+.form__field input:focus,
+.form__field select:focus,
+.form__field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--clay);
+}
+
+.form__field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Select con flecha propia */
+.form__field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234A453E' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  background-size: 16px;
+  padding-right: 24px;
+}
+
+/* Fila de checkbox */
+.form__field--check {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.form__field--check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: var(--clay);
+  flex-shrink: 0;
+}
+
+.form__field--check label {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--graphite);
+  cursor: pointer;
+}
+
+.form__field--check .form__error {
+  flex-basis: 100%;
+}
+
+/* Mensaje de error de campo */
+.form__error {
+  font-size: 0.8125rem;
+  color: #A14A3A;
+}
+
+/* Botón de envío + spinner */
+.form__submit {
+  justify-self: start;
+  margin-top: var(--space-4);
+  position: relative;
+}
+
+.form__submit-spinner {
+  display: none;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+.form__submit.is-loading .form__submit-spinner {
+  display: inline-block;
+}
+
+.form__submit.is-loading {
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Estado global del formulario */
+.form__status {
+  margin-top: var(--space-4);
+  font-size: 0.9375rem;
+  color: var(--olive);
+}
+
+.form__status.is-error {
+  color: #A14A3A;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: var(--space-8);
+  border-top: 1px solid var(--hairline-2);
+  background: var(--bone);
+}
+
+.footer__inner {
+  display: grid;
+  gap: var(--space-10);
+  padding-bottom: var(--space-12);
+}
+
+.footer__tagline {
+  margin-top: var(--space-4);
+  max-width: 32ch;
+  color: var(--graphite);
+}
+
+.footer__nav ul,
+.footer__contact ul {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.footer__nav a,
+.footer__contact a {
+  color: var(--graphite);
+  font-size: 0.9375rem;
+}
+
+.footer__nav a:hover,
+.footer__contact a:hover {
+  color: var(--ink);
+}
+
+.footer__social {
+  display: flex !important;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.footer__social a {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--hairline-2);
+  font-size: 0.8125rem;
+  color: var(--stone);
+}
+
+.footer__bottom ul {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.footer__bottom a:hover {
+  color: var(--ink);
+}
+
+@media (min-width: 768px) {
+  .footer__inner {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: var(--space-12);
+  }
+}

@@ -1,0 +1,212 @@
+/* FIX v3 — proyectos horizontales (foto+texto lado a lado) + select/chips contacto. */
+.projects__grid{gap:1.2rem}
+.projects__grid .project{flex-direction:row;align-items:stretch;min-height:230px}
+.projects__grid .project__media{flex:0 0 42%;aspect-ratio:auto;max-height:none;min-height:230px}
+.projects__grid .project__meta{justify-content:center;padding:1.4rem 1.5rem;gap:.4rem;flex:1;min-width:0}
+.projects__grid .project__name{font-size:1.25rem}
+.projects__grid .project__desc{font-size:.9rem}
+.projects__grid .project.is-alt{flex-direction:row-reverse}
+.projects{padding-bottom:clamp(2.5rem,5vw,4rem)}
+.projects__filters{display:flex;flex-wrap:wrap;gap:.55rem;margin:0 0 1.6rem}
+.projects__grid{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr);
+  gap:1.2rem;
+  align-items:stretch;
+  max-width:920px;
+  margin-inline:auto;
+}
+.projects__grid .project{
+  display:flex !important;
+  flex-direction:row;
+  align-items:stretch;
+  grid-template-columns:none !important;
+  grid-column:auto !important;
+  grid-row:auto !important;
+  background:#fff;
+  border:1px solid rgba(27,21,18,.09);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  min-width:0;
+  min-height:230px;
+  margin:0;
+}
+.projects__grid .project__media{
+  grid-column:auto !important;
+  flex:0 0 42%;
+  aspect-ratio:auto;
+  max-height:none;
+  min-height:230px;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.projects__grid .project__media img{width:100%;height:100%;object-fit:cover}
+.projects__grid .project__meta{
+  grid-column:auto !important;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  gap:.4rem;
+  padding:1.4rem 1.5rem;
+  min-width:0;
+  flex:1;
+}
+.projects__grid .project__name{font-size:1.25rem}
+.projects__grid .project__detail{font-size:.72rem}
+.projects__grid .project__desc{
+  display:block;
+  font-size:.86rem;
+  line-height:1.55;
+  color:var(--graphite);
+  margin-top:.15rem;
+}
+
+/* ---------- CONTACTO: centrado y bonito ---------- */
+.contact .section-header{
+  text-align:center;
+  margin-inline:auto;
+  max-width:52ch;
+}
+.contact__grid{
+  max-width:1060px;
+  margin-inline:auto;
+  align-items:start;
+}
+@media (min-width:900px){
+  .contact__grid{
+    grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);
+    gap:2.5rem;
+  }
+}
+/* Tarjeta formulario más compacta */
+.contact__form-wrap{
+  border-radius:20px;
+  padding:clamp(1.4rem,2.5vw,2rem);
+  max-width:640px;
+  margin-inline:auto;
+  width:100%;
+}
+.contact__form-title{font-size:clamp(1.7rem,3vw,2.4rem);text-align:center}
+.contact__lead{text-align:center;margin-inline:auto}
+.contact__steps{margin-bottom:1.2rem}
+/* Inputs: quita el hueco gigante (venía con padding-top 2.5rem) */
+.form__field{gap:.3rem;margin-bottom:.4rem}
+.form__field input,
+.form__field select,
+.form__field textarea{
+  padding:.8rem 0 .7rem !important;
+}
+.form__field textarea{min-height:110px}
+/* Botón centrado, pill, ancho completo en móvil */
+.form__submit{
+  justify-self:stretch;
+  justify-content:center;
+  width:100%;
+  border-radius:999px;
+  padding:1rem 1.4rem;
+  font-weight:700;
+}
+.contact__cta{margin-top:.2rem}
+.projects__grid,.contact__grid{min-width:0}
+
+/* Modo 1 resultado: foto a un lado + texto al otro */
+.projects__grid.has-single{grid-template-columns:minmax(0,1fr)}
+.projects__grid.has-single .project{flex-direction:row;align-items:stretch;max-width:880px;margin-inline:auto;width:100%}
+.projects__grid.has-single .project__media{flex:0 0 46%;aspect-ratio:auto;max-height:none;min-height:260px}
+.projects__grid.has-single .project__meta{justify-content:center;padding:1.8rem;gap:.45rem}
+.projects__grid.has-single .project__name{font-size:1.5rem}
+.projects__grid.has-single .project__desc{font-size:.95rem}
+.contact__info{
+  background:var(--linen);
+  border:1px solid rgba(27,21,18,.08);
+  border-radius:18px;
+  padding:1.4rem 1.5rem;
+  gap:1.1rem;
+}
+@media (min-width:900px){
+  .contact__info{border-left:1px solid rgba(27,21,18,.08);padding-top:1.4rem}
+}
+/* FIX v2 — parte B: testimonios en carta, CTA 12 sin corte, contacto plus, WhatsApp. */
+.testimonials{background:var(--linen)}
+.testimonials__grid{display:grid;gap:1.2rem}
+.testimonials__grid .quote{position:relative;background:#fff;border:1px solid rgba(27,21,18,.09);border-radius:20px;padding:2rem 1.8rem 1.6rem;box-shadow:var(--shadow-md);display:grid;gap:.8rem;align-content:start;overflow:hidden}
+.testimonials__grid .quote::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:var(--grad-brand)}
+.testimonials__grid .quote__mark{position:absolute;top:.4rem;right:1.2rem;font-family:var(--font-display);font-size:4.5rem;line-height:1;color:var(--blush);pointer-events:none}
+.testimonials__grid .quote__stars{color:var(--amber);font-size:.95rem;letter-spacing:.15em}
+.testimonials__grid .quote blockquote{font-size:1.02rem;line-height:1.6;color:var(--ink)}
+.testimonials__grid .quote__author{display:flex;gap:.8rem;align-items:center;margin-top:.4rem;padding-top:1rem;border-top:1px solid rgba(27,21,18,.1);font-size:.85rem;color:var(--stone)}
+.testimonials__grid .quote__avatar{width:44px;height:44px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;background:var(--grad-brand);color:#fff;font-weight:700;font-size:.85rem}
+.testimonials__grid .quote__author strong{color:var(--ink)}
+.cta-band__title .hl.nowrap,.nowrap{white-space:nowrap}
+.cta-band__title .hl{display:inline-block;padding-right:.08em;padding-bottom:.06em;line-height:1.1;overflow:visible}
+.contact__note{background:#fff;border:1px solid rgba(27,21,18,.08);border-radius:12px;padding:.9rem 1rem;font-size:.9rem;color:var(--graphite)}
+.contact__note strong{color:var(--ink)}
+/* Contador + nota filtro activo + boton ver-todos */
+.projects__count{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);margin:-.8rem 0 1.2rem}
+.projects__active{font-size:.9rem;color:var(--graphite);margin:-1rem 0 1.2rem}
+.projects__clear{padding:.4rem 1rem;border-radius:999px;border:1px solid rgba(27,21,18,.2);font-size:.8rem;font-weight:600}
+.projects__clear:hover{border-color:var(--clay);color:var(--clay-deep)}
+/* Select TIPO con diseno (sustituye nativo sin gracia) */
+.form__field select{
+  appearance:none;-webkit-appearance:none;
+  width:100%;
+  background-color:#fff;
+  border:1px solid rgba(27,21,18,.18);
+  border-radius:12px;
+  padding:.85rem 2.6rem .85rem 1rem !important;
+  font-size:.95rem;color:var(--ink);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239A3A1E' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;background-size:16px;
+  cursor:pointer;transition:border-color .2s,box-shadow .2s;
+}
+.form__field select:hover{border-color:var(--clay)}
+.form__field select:focus{border-color:var(--clay);box-shadow:0 0 0 3px rgba(196,80,43,.16);outline:none}
+/* Chips de tipo en el contacto */
+@media (max-width:640px){
+  .projects__grid .project,.projects__grid .project.is-alt{flex-direction:column;min-height:0}
+  .projects__grid .project__media{flex:none;aspect-ratio:16/10;min-height:0}
+}
+@media (min-width:768px){.testimonials__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4rem}}
+.projects__grid,.contact__grid{min-width:0}
+.project__body p,.contact__info p{overflow-wrap:anywhere}
+@media (max-width:640px){
+  .projects__filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.4rem;scrollbar-width:none}
+  .projects__filters::-webkit-scrollbar{display:none}
+  .filter-btn{flex-shrink:0}
+  .contact__form-wrap{border-radius:16px}
+}
+.float-wa{position:fixed;width:60px;height:60px;bottom:88px;right:22px;background-color:#25d366;color:#fff;border-radius:50%;display:grid;place-items:center;box-shadow:0 8px 24px -6px rgba(37,211,102,.7);z-index:105;transition:transform .25s var(--ease)}
+.float-wa:hover{transform:translateY(-3px) scale(1.04)}
+@media (max-width:640px){.float-wa{width:54px;height:54px;bottom:86px;right:14px}}
+/* --- Tarjetas de proyecto: muestra seleccionable (sin navegación) --- */
+.projects__grid .project{cursor:pointer}
+.projects__grid .project__media::after{content:"Seleccionar"}
+.projects__grid .project.is-selected{
+  outline:2px solid var(--clay,#C4502B);
+  outline-offset:3px;
+  box-shadow:0 18px 44px -18px rgba(196,80,43,.45);
+  transform:translateY(-3px);
+}
+.projects__grid .project.is-selected .project__name{color:var(--clay-deep,#9A3A1E)}
+
+/* --- Footer: iconos sociales interactivos (WhatsApp / Instagram / LinkedIn) --- */
+.footer__social{display:flex;gap:1rem;align-items:center;justify-content:flex-start}
+.footer__social a{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;transition:transform .25s var(--ease),box-shadow .25s,background .25s;text-decoration:none}
+.social-btn--wa{background:#25d366;color:#fff;box-shadow:0 8px 20px -8px rgba(37,211,102,.6)}
+.social-btn--ig{background:linear-gradient(45deg,#f9b920 0%,#e4405f 55%,#833ab4 100%);color:#fff;box-shadow:0 8px 20px -8px rgba(228,64,95,.55)}
+.social-btn--li{background:#0a66c2;color:#fff;box-shadow:0 8px 20px -8px rgba(10,102,194,.55)}
+.footer__social a:hover{transform:translateY(-3px) scale(1.08);box-shadow:0 14px 30px -10px currentColor}
+.footer__social a:focus-visible{outline:2px solid var(--amber,#E8A33D);outline-offset:2px}
+
+/* --- Contacto: formulario compacto --- */
+.contact__form-wrap{padding:clamp(1.2rem,2vw,1.6rem)}
+.form__field{margin-bottom:.35rem}
+.form__field label{font-size:.78rem}
+.form__field textarea{min-height:88px;line-height:1.5}
+.contact__steps li{font-size:.7rem}
+.contact__steps{margin-bottom:.9rem}
+.contact__lead{font-size:.92rem;line-height:1.45}
+.contact__trust span{font-size:.75rem}
+@media (max-width:640px){.contact__form-wrap{padding:1.2rem}}

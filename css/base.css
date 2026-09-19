@@ -1,0 +1,168 @@
+/* ============================================================
+   BASE · Reset, tipografía, accesibilidad global, utilidades
+   ============================================================ */
+
+/* -------- Reset -------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;   /* compensa el header fijo */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Respeta la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bone);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  font-feature-settings: "kern", "liga", "calt";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* -------- Titulares -------- */
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 60;
+}
+
+h1 { font-size: var(--fs-display-xl); }
+
+h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.12;
+}
+
+/* h3 usa sans por defecto (para títulos de card / principio / etc.) */
+h3 {
+  font-size: var(--fs-h3);
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+}
+
+p { margin: 0; }
+
+/* -------- Enlaces e imágenes -------- */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* -------- Listas -------- */
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* -------- Botones e inputs -------- */
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* -------- Focus visible global -------- */
+:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* -------- Selección de texto -------- */
+::selection {
+  background: var(--clay);
+  color: var(--bone);
+}
+
+/* ============================================================
+   UTILIDADES GLOBALES
+   ============================================================ */
+
+/* Skip link (accesibilidad — primer elemento del body) */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 999;
+  padding: var(--space-2) var(--space-4);
+  background: var(--ink);
+  color: var(--bone);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+  transition: transform var(--dur-base) var(--ease);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Reveal on scroll — solo se activa si JS está presente */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--dur-slow) var(--ease),
+              transform var(--dur-slow) var(--ease);
+  will-change: opacity, transform;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Si el usuario prefiere movimiento reducido, mostramos sin animar */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
